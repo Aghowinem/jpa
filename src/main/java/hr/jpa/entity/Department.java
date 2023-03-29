@@ -3,6 +3,8 @@ package hr.jpa.entity;
 import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hr_department")
 public class Department {
@@ -13,10 +15,8 @@ public class Department {
 
     private String name;
 
-    public Department(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
 
     public int getId() {
         return id;
@@ -25,12 +25,18 @@ public class Department {
     public String getName() {
         return name;
     }
-
+    public List<Employee> getEmployees() {
+        return employees;
+    }
     public void setId(int id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

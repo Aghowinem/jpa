@@ -1,5 +1,6 @@
 package hr.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
@@ -7,8 +8,11 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+//  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "department_seq")
+//  @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", initialValue = 100)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "department_gen")
+    @TableGenerator(name = "department_gem",table = "department_seq" , allocationSize = 1, initialValue = 20)
     private int id;
     @Column(name = "name")
     private String name;
@@ -16,13 +20,8 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
+    @JsonIgnore
     private Department department;
-
-    public Employee(int id, String name, double salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
-    }
 
     public void setId(int id) {
         this.id = id;

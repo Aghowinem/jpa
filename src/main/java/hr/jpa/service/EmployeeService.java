@@ -4,7 +4,9 @@ import hr.jpa.entity.Employee;
 import hr.jpa.repository.EmployeeReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,6 +23,11 @@ public class EmployeeService {
         return employeeReps.save(employee);
     }
 
+
+    public Iterable<Employee> findall(){
+        return employeeReps.findAll();
+    }
+
     public Employee update(Employee employee){
         Employee currentEmployee = employeeReps.findById(employee.getId()).get();
         currentEmployee.setName(employee.getName());
@@ -28,5 +35,8 @@ public class EmployeeService {
         currentEmployee.setSalary(employee.getSalary());
         currentEmployee.setDepartment(employee.getDepartment());
         return employeeReps.save(currentEmployee);
+    }
+    public List<Employee> findByDepartmentId(int id){
+        return employeeReps.findByDepartmentId(id);
     }
 }
