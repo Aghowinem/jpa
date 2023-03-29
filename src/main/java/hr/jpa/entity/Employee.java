@@ -47,4 +47,12 @@ public class Employee {
     public double getSalary() {
         return salary;
     }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
