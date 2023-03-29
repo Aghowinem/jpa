@@ -20,8 +20,11 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "department_id", referencedColumnName = "id")
-    @JsonIgnore
     private Department department;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public void setId(int id) {
         this.id = id;
@@ -33,6 +36,14 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public int getId() {
