@@ -3,6 +3,9 @@ package hr.jpa.entity;
 import hr.jpa.service.EmployeeService;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "sec_users")
 public class User {
@@ -15,6 +18,10 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Employee employee;
+
+    @ManyToMany
+    @JoinTable(name = "sec_user_roles", joinColumns = @JoinColumn(name = "user_id") , inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Roles> roles = new HashSet<>();
 
     public int getId() {
         return id;
