@@ -27,6 +27,7 @@ public class EmployeeController {
         res.setId(emp.get().getId());
         res.setName(emp.get().getName());
         res.setDepartment(emp.orElseThrow().getDepartment());
+        res.setUser(emp.get().getUser());
         return res;
     }
     @PostMapping()
