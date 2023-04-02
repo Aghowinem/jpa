@@ -1,6 +1,7 @@
 package hr.jpa.controller;
 
 import hr.jpa.entity.Employee;
+import hr.jpa.entity.EmployeeResponse;
 import hr.jpa.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,13 @@ public class EmployeeController {
         return employeeService.findall();
     }
     @GetMapping("/findbyid/{id}")
-    public Optional<Employee> findById(@PathVariable int id){
-        return employeeService.findById(id);
+    public EmployeeResponse findById(@PathVariable int id){
+        Optional<Employee> emp = employeeService.findById(id);
+        EmployeeResponse res = new EmployeeResponse();
+        res.setId(emp.get().getId());
+        res.setName(emp.get().getName());
+        res.setDepartment(emp.orElseThrow().getDepartment());
+        return res;
     }
     @PostMapping()
     public int insert(@RequestBody Employee employee){

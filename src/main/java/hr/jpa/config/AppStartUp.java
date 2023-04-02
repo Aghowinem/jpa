@@ -15,13 +15,16 @@ import java.util.Set;
 @Component
 public class AppStartUp implements CommandLineRunner {
 
+
     @Autowired
     private UserService userService;
 
     @Autowired
     private RolesService rolesService;
+
     @Override
     public void run(String... args) throws Exception {
+        if (userService.findAll().isEmpty()) {
             Roles role1 = new Roles();
             role1.setName("Admin");
 
@@ -29,10 +32,10 @@ public class AppStartUp implements CommandLineRunner {
             role2.setName("user");
 
             rolesService.insert(role1);
-            rolesService.insert(role1);
+            rolesService.insert(role2);
 
             Set<Roles> adminRoles = new HashSet<>();
-            adminRoles.add((Roles) role1);
+            adminRoles.add(role1);
 
             Set<Roles> userRoles = new HashSet<>();
             userRoles.add(role2);
@@ -48,6 +51,7 @@ public class AppStartUp implements CommandLineRunner {
             user2.setUserName("user1");
             user2.setPassword("1234");
             user2.setRoles(userRoles);
-            userService.insert(user1);
+            userService.insert(user2);
+        }
     }
 }

@@ -3,9 +3,11 @@ package hr.jpa.service;
 import hr.jpa.entity.Roles;
 import hr.jpa.repository.RolesReps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class RolesService {
 
     @Autowired
@@ -20,7 +22,7 @@ public class RolesService {
     }
 
 
-    public Iterable<Roles> findall(){
+    public Iterable<Roles> findAll(){
         return rolesReps.findAll();
     }
 

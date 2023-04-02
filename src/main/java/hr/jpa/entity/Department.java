@@ -15,8 +15,8 @@ public class Department {
 
     private String name;
 
-    @OneToMany(mappedBy = "department")
-    private List<Employee> employees;
+//    @OneToMany(mappedBy = "department")
+//    private List<Employee> employees;
 
     public int getId() {
         return id;
@@ -25,9 +25,9 @@ public class Department {
     public String getName() {
         return name;
     }
-    public List<Employee> getEmployees() {
-        return employees;
-    }
+//    public List<Employee> getEmployees() {
+//        return employees;
+//    }
     public void setId(int id) {
         this.id = id;
     }
@@ -36,7 +36,7 @@ public class Department {
         this.name = name;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
+//    public void setEmployees(List<Employee> employees) {
+//        this.employees = employees;
+//    }
 }

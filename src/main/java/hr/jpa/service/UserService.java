@@ -3,10 +3,13 @@ package hr.jpa.service;
 import hr.jpa.entity.User;
 import hr.jpa.repository.UserReps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
 public class UserService {
 
 
@@ -22,7 +25,9 @@ public class UserService {
     }
 
 
-    public Iterable<User> findall(){
+
+    public List<User> findAll() {
+
         return userReps.findAll();
     }
 

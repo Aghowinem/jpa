@@ -1,7 +1,6 @@
 package hr.jpa.service;
 
 import hr.jpa.entity.Department;
-import hr.jpa.entity.Employee;
 import hr.jpa.repository.DepartmentReps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

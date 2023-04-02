@@ -15,11 +15,18 @@ public class EmployeeService {
     @Autowired
     private EmployeeReps employeeReps;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     public Optional<Employee> findById(int id){
         return employeeReps.findById(id);
     }
 
     public Employee insert(Employee employee){
+
+        if(employee.getDepartment() != null){
+//            employee.setDepartment(departmentService.findById(employee.getDepartment().getId()));
+        }
         return employeeReps.save(employee);
     }
 
