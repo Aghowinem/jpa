@@ -8,7 +8,7 @@ import java.util.Optional;
 public class Employee {
 
 
-//  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "department_seq")
+    //  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "department_seq")
 //  @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", initialValue = 100)
     //@TableGenerator(name = "department_gem",table = "department_seq" , allocationSize = 1, initialValue = 20)
     @Id

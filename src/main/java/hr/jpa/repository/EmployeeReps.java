@@ -17,7 +17,5 @@ public interface EmployeeReps extends JpaRepository<Employee, Integer> {
     List<Employee> findByDepartment(int id);
     List<Employee> findByDepartmentId(int id);
 
-    @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Transactional
-    int DeleteByNameAndDepartmentNameContaining(String empName,String deptName);
+
 }
