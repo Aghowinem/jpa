@@ -1,5 +1,6 @@
 package hr.jpa.repository;
 
+import hr.jpa.HRStatisticsProjecion;
 import hr.jpa.entity.Employee;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,8 @@ public interface EmployeeReps extends JpaRepository<Employee, Integer> {
     List<Employee> findByDepartment(int id);
     List<Employee> findByDepartmentId(int id);
 
-
+    @Query(value = "select (select count(*) from newdb2.hr_department) DeptCount," +
+            " (select count(*) from newdb2.employee) EmpCount," +
+            "(select count(*) from newdb2.sec_users) UsersCount;",nativeQuery = true)
+    HRStatisticsProjecion getHRStatistics();
 }

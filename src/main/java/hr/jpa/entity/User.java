@@ -1,7 +1,7 @@
 package hr.jpa.entity;
 
 import jakarta.persistence.*;
-import org.apache.catalina.Role;
+import hr.jpa.entity.Roles;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 @Table(name = "sec_users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

@@ -1,9 +1,11 @@
 package hr.jpa.controller;
 
+import hr.jpa.HRStatisticsProjecion;
 import hr.jpa.entity.Employee;
 import hr.jpa.entity.EmployeeResponse;
 import hr.jpa.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,5 +46,10 @@ public class EmployeeController {
     @GetMapping("/department/{id}")
     public List<Employee> findByDepartmentId(@PathVariable int id){
         return employeeService.findByDepartmentId(id);
+    }
+
+    @GetMapping("/statistics")
+    public ResponseEntity<?> getHRStatistics(){
+        return ResponseEntity.ok(employeeService.getHRStatistics());
     }
 }

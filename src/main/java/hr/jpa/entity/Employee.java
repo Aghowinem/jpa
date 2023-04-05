@@ -28,9 +28,6 @@ public class Employee {
     @JoinColumn(name = "id")
     private User user;
 
-    @Version
-    private int version;
-
     public void setId(int id) {
         this.id = id;
     }

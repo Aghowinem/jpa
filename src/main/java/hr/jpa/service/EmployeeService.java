@@ -1,5 +1,6 @@
 package hr.jpa.service;
 
+import hr.jpa.HRStatisticsProjecion;
 import hr.jpa.entity.Employee;
 import hr.jpa.repository.EmployeeReps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,7 @@ public class EmployeeService {
 
     public Employee insert(Employee employee){
 
-        if(employee.getDepartment() != null){
-//            employee.setDepartment(departmentService.findById(employee.getDepartment().getId()));
-        }
+
         return employeeReps.save(employee);
     }
 
@@ -45,5 +44,9 @@ public class EmployeeService {
     }
     public List<Employee> findByDepartmentId(int id){
         return employeeReps.findByDepartmentId(id);
+    }
+
+    public HRStatisticsProjecion getHRStatistics(){
+        return employeeReps.getHRStatistics();
     }
 }
