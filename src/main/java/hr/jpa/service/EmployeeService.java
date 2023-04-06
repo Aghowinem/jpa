@@ -1,11 +1,14 @@
 package hr.jpa.service;
 
+import ch.qos.logback.core.pattern.color.BoldBlueCompositeConverter;
 import hr.jpa.HRStatisticsProjecion;
 import hr.jpa.entity.Employee;
 import hr.jpa.repository.EmployeeReps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +39,8 @@ public class EmployeeService {
 
     public Employee update(Employee employee){
         Employee currentEmployee = employeeReps.findById(employee.getId()).get();
-        currentEmployee.setName(employee.getName());
+        currentEmployee.setFirstName(employee.getFirstName());
+        currentEmployee.setLastName(employee.getLastName());
         currentEmployee.setId(employee.getId());
         currentEmployee.setSalary(employee.getSalary());
         currentEmployee.setDepartment(employee.getDepartment());
@@ -48,5 +52,12 @@ public class EmployeeService {
 
     public HRStatisticsProjecion getHRStatistics(){
         return employeeReps.getHRStatistics();
+    }
+    public List<Employee> filter(String name, int pageNumber, int pageSize, String sortCol, Boolean isAsc){
+        if(name.isEmpty() || name.isBlank() || name == null){
+            System.out.println("NULLLLLLLLLLLL");
+        }
+        Pageable page = PageRequest.of(pageNumber,pageSize,Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC,sortCol));
+        return employeeReps.filter(name, page);
     }
 }

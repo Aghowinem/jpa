@@ -5,6 +5,7 @@ import hr.jpa.entity.Employee;
 import hr.jpa.entity.EmployeeResponse;
 import hr.jpa.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class EmployeeController {
         Optional<Employee> emp = employeeService.findById(id);
         EmployeeResponse res = new EmployeeResponse();
         res.setId(emp.get().getId());
-        res.setName(emp.get().getName());
+        res.setName(emp.get().getFirstName());
         res.setDepartment(emp.orElseThrow().getDepartment());
         res.setUser(emp.get().getUser());
         return res;
@@ -51,5 +52,10 @@ public class EmployeeController {
     @GetMapping("/statistics")
     public ResponseEntity<?> getHRStatistics(){
         return ResponseEntity.ok(employeeService.getHRStatistics());
+    }
+
+    @GetMapping("/filter")
+    public List<Employee> filter(@RequestParam String name, @RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String sortCol, @RequestParam Boolean isAsc){
+        return employeeService.filter(name,pageNumber, pageSize, sortCol,isAsc);
     }
 }

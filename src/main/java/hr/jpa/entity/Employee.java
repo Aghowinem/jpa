@@ -2,9 +2,11 @@ package hr.jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Entity
+@Table(name = "sakila")
 public class Employee {
 
 
@@ -12,19 +14,21 @@ public class Employee {
 //  @SequenceGenerator(name = "department_gen", sequenceName = "department_seq", initialValue = 100)
     //@TableGenerator(name = "department_gem",table = "department_seq" , allocationSize = 1, initialValue = 20)
     @Id
-    @Column(name = "id")
+    @Column(name = "actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+    private String lastName;
+    private Date lastUpdate;
     private double salary;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne()
     @JoinColumn(name = "id")
     private User user;
 
@@ -32,28 +36,44 @@ public class Employee {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setLastUpdate(Date lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
     public void setSalary(double salary) {
         this.salary = salary;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public User getUser() {
-        return user;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getLastUpdate() {
+        return lastUpdate;
     }
 
     public double getSalary() {
@@ -64,7 +84,7 @@ public class Employee {
         return department;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public User getUser() {
+        return user;
     }
 }
