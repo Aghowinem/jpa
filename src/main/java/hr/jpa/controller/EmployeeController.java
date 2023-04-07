@@ -55,7 +55,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/filter")
-    public List<Employee> filter(@RequestParam String name, @RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String sortCol, @RequestParam Boolean isAsc){
-        return employeeService.filter(name,pageNumber, pageSize, sortCol,isAsc);
+    public ResponseEntity<?> filter(@RequestParam String name, @RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String sortCol, @RequestParam Boolean isAsc){
+        return ResponseEntity.ok(employeeService.filter(name, pageNumber, pageSize, sortCol, isAsc));
     }
 }
