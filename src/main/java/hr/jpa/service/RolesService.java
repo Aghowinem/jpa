@@ -31,4 +31,9 @@ public class RolesService {
         currentRoles.setName(Roles.getName());
         return rolesReps.save(currentRoles);
     }
+
+    public Roles findByName(String name){
+        return rolesReps.findByName(name);
+    }
+
 }
