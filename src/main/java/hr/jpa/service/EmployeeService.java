@@ -3,8 +3,10 @@ package hr.jpa.service;
 import ch.qos.logback.core.pattern.color.BoldBlueCompositeConverter;
 import hr.jpa.HRStatisticsProjecion;
 import hr.jpa.entity.Employee;
+import hr.jpa.projection.EmployeeProjection;
 import hr.jpa.repository.EmployeeReps;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -53,7 +55,7 @@ public class EmployeeService {
     public HRStatisticsProjecion getHRStatistics(){
         return employeeReps.getHRStatistics();
     }
-    public List<Employee> filter(String name, int pageNumber, int pageSize, String sortCol, Boolean isAsc){
+    public Page<Employee> filter(String name, int pageNumber, int pageSize, String sortCol, Boolean isAsc){
         if(name.isEmpty() || name.isBlank() || name == null){
             System.out.println("NULLLLLLLLLLLL");
         }

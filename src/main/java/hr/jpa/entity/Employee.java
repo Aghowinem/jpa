@@ -18,6 +18,9 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
+
+
+
     @Column(name = "first_name")
     private String firstName;
     private String lastName;
@@ -32,6 +35,14 @@ public class Employee {
     @JoinColumn(name = "id")
     private User user;
 
+    public Employee() {
+        super();
+    }
+    public Employee(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
     public void setId(int id) {
         this.id = id;
     }
