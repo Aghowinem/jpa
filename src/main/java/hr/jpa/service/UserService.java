@@ -48,11 +48,16 @@ public class UserService {
 
     @Transactional
     public void AddRoleForAllUsers(String roleName){
-        Roles roles = rolesService.findByName(roleName);
+        // start Transaction
 
+        // Persist
+        Roles roles = rolesService.findByName(roleName);
         findAll().forEach(user -> {
             user.addRoles(roles);
             userReps.save(user);
         });
+
+        // commit or rollback
+        // end Transaction
     }
 }

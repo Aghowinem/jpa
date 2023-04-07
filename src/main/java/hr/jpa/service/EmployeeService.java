@@ -55,11 +55,23 @@ public class EmployeeService {
     public HRStatisticsProjecion getHRStatistics(){
         return employeeReps.getHRStatistics();
     }
-    public Page<Employee> filter(String name, int pageNumber, int pageSize, String sortCol, Boolean isAsc){
-        if(name.isEmpty() || name.isBlank() || name == null){
-            System.out.println("NULLLLLLLLLLLL");
+    public Page<EmployeeProjection> filter(String name ,int pageNum, int pageSize, String sortCol, Boolean isAsc) {
+
+        if (name.isEmpty() || name.isBlank() || name == null) {
+            name = null;
         }
-        Pageable page = PageRequest.of(pageNumber,pageSize,Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC,sortCol));
+
+        // Sort object with List of Order objects.
+//		List<Order> orders = new ArrayList<Order>();
+//
+//		Order order1 = new Order(isAsc ? Direction.ASC : Direction.DESC, sortCol);
+//		orders.add(order1);
+//
+//		Order order2 = new Order(Sort.Direction.ASC, "title");
+//		orders.add(order2);
+
+        Pageable page = PageRequest.of(pageNum, pageSize, Sort.by(isAsc ? Sort.Direction.ASC : Sort.Direction.DESC  ,sortCol));
+
         return employeeReps.filter(name, page);
     }
 }

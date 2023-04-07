@@ -24,8 +24,8 @@ public interface EmployeeReps extends JpaRepository<Employee, Integer> {
     List<Employee> findByDepartmentId(int id);
 
     //#JPQL
-    @Query(value = "select emp Employee from Employee emp where (emp.firstName = :name)")
-    Page<Employee> filter(String name, Pageable sort);
+    @Query(value = "select emp from #{#entityName} emp where (:empName is null or emp.firstName like :empName)")
+    Page<EmployeeProjection> filter(@Param("empName") String name, Pageable pageable);
 
     //#nativeQuery
     @Query(value = "select (select count(*) from newdb2.hr_department) DeptCount," +

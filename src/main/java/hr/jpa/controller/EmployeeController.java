@@ -55,7 +55,9 @@ public class EmployeeController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<?> filter(@RequestParam String name, @RequestParam int pageNumber, @RequestParam int pageSize, @RequestParam String sortCol, @RequestParam Boolean isAsc){
-        return ResponseEntity.ok(employeeService.filter(name, pageNumber, pageSize, sortCol, isAsc));
+    public ResponseEntity<?> findByName(@RequestParam String name ,@RequestParam int pageNum, @RequestParam int pageSize
+            , @RequestParam String sortCol , @RequestParam Boolean isAsc) {
+
+        return ResponseEntity.ok(employeeService.filter(name, pageNum, pageSize, sortCol, isAsc));
     }
 }
